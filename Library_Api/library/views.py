@@ -3,7 +3,6 @@ from drf_spectacular.utils import extend_schema
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
 from Library_Api.library.models import Book
 from Library_Api.library.serializers import BookSerializer
 
@@ -52,3 +51,20 @@ class BookListAPIViewSet(APIView):
         book = self.get_object(pk)
         serializer = BookSerializer(book)
         return Response(serializer.data)
+
+    def put(self, request, pk: int):
+        book = self.get_object(pk)
+        serializer = BookSerializer(book, data=request.data)
+
+        return self.valid_serializer(serializer)
+
+    def patch(self, request, pk: int):
+        book = self.get_object(pk)
+        serializer = BookSerializer(book, request.data, partial=True)
+
+        return self.valid_serializer(serializer)
+
+    def delete(self, request, pk: int):
+        book = self.get_object(pk)
+        book.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
