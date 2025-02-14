@@ -1,3 +1,4 @@
+from django.shortcuts import get_object_or_404
 from drf_spectacular.utils import extend_schema
 from rest_framework import status
 from rest_framework.response import Response
@@ -27,3 +28,27 @@ class BooksApiView(APIView):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+@extend_schema(
+    tags=['Book'],
+    request=BookSerializer(),
+    responses={200: BookSerializer(), 400: BookSerializer()},
+)
+class BookListAPIViewSet(APIView):
+
+    @staticmethod
+    def get_object(pk):
+        return get_object_or_404(Book, pk=pk)
+
+    @staticmethod
+    def valid_serializer(serializer):
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def get(self, request, pk: int):
+        book = self.get_object(pk)
+        serializer = BookSerializer(book)
+        return Response(serializer.data)
