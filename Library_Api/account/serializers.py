@@ -25,3 +25,11 @@ class LoginResponseSerializer(serializers.Serializer):
     refresh_token = serializers.CharField()
     access_token = serializers.CharField()
     message = serializers.CharField()
+
+
+class LogoutRequestSerializer(serializers.Serializer):
+    refresh = serializers.CharField()
+
+
+class LogoutResponseSerializer(serializers.Serializer):
+    message = serializers.CharField()
