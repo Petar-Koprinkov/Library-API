@@ -9,8 +9,8 @@ from Library_Api.library.serializers import BookSerializer
 
 @extend_schema(
     tags=['Books'],
-    request=BookSerializer(),
-    responses={200: BookSerializer(), 400: BookSerializer()},
+    request=BookSerializer,
+    responses={200: BookSerializer, 400: BookSerializer},
 )
 class BooksApiView(APIView):
     def get(self, request, *args, **kwargs):
