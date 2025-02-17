@@ -12,7 +12,7 @@ class BooksApiViewTest(TestCase):
 
         self.client = APIClient()
 
-        self.user = User.objects.create_user(username="testuser", password="testpassword")
+        self.user = User.objects.create_user(username="petarkoprinkov", password="petarkoprinkovpassword")
 
         refresh = RefreshToken.for_user(self.user)
         self.access_token = str(refresh.access_token)
