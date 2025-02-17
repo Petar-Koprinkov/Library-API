@@ -1,5 +1,7 @@
 # 🏛️ Library API
 
+## You can access the application with all its functionalities LOCALLY at http://localhost:8000/
+
 ### A DjangoRest Web Application that allows you to manage a library. Users can register, log in, log out, get all books, create book, get a current book, edit it and delete it.
 
 
