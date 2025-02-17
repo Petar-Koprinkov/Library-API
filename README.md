@@ -34,6 +34,7 @@ pip install -r requirements.txt
 ### Step 3: Database Migration
 Run the following command to apply migrations:
 ```bash
+python manage.py makemigrations
 python manage.py migrate
 ```
 
