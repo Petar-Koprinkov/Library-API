@@ -8,7 +8,9 @@ from Library_Api.library.serializers import BookSerializer
 
 
 @extend_schema(
-    tags=['Books'],
+    tags=["Books"],
+    summary="Books management",
+    description="Can get and create books",
     request=BookSerializer,
     responses={200: BookSerializer, 400: BookSerializer},
 )
@@ -29,9 +31,11 @@ class BooksApiView(APIView):
 
 
 @extend_schema(
-    tags=['Book'],
-    request=BookSerializer(),
-    responses={200: BookSerializer(), 400: BookSerializer()},
+    tags=["Book"],
+    summary="Book management",
+    description="Can get, edit, partially edit and delete current book",
+    request=BookSerializer,
+    responses={200: BookSerializer, 400: BookSerializer},
 )
 class BookListAPIViewSet(APIView):
 
